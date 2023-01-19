@@ -1,0 +1,40 @@
+{
+  "name": "proyecto-unidad-7",
+  "version": "1.0.0",
+  "description": "API REST CON EXPRESS, TYPESCRIPT Y PRISMA",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Geffrerson7/Proyecto-Unidad-7.git"
+  },
+  "keywords": [
+    "PRISMA",
+    "TYPESCRIPT",
+    "EXPRESS"
+  ],
+  "author": "Raisa Orellana, Jaqueline Ramos y Gefferson Casasola",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "4.17.15",
+    "@types/node": "18.11.18",
+    "nodemon": "2.0.20",
+    "prisma": "4.9.0",
+    "ts-node": "10.9.1",
+    "tslib": "2.4.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@prisma/client": "4.9.0",
+    "dotenv": "16.0.3",
+    "express": "4.18.2"
+  },
+  "bugs": {
+    "url": "https://github.com/Geffrerson7/Proyecto-Unidad-7/issues"
+  },
+  "homepage": "https://github.com/Geffrerson7/Proyecto-Unidad-7#readme"
+}
