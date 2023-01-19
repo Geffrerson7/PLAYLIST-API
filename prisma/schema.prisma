@@ -22,7 +22,7 @@ model Playlist{
   name String
   user    User    @relation(fields: [user_id], references: [id])
   user_id  Int
-  songs Song[] 
+  songs PlaylistsOnSongs[] 
     
 }
 
@@ -35,10 +35,20 @@ model Song {
   genre String
   duration Int
   status String?
-  playlists   Playlist[] 
+  playlists   PlaylistsOnSongs[] 
   
 }
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model PlaylistsOnSongs {
+  playlist       Playlist     @relation(fields: [playlist_id], references: [id])
+  playlist_id     Int // relation scalar field (used in the `@relation` attribute above)
+  song   Song @relation(fields: [song_id], references: [id])
+  song_id Int // relation scalar field (used in the `@relation` attribute above)
+  
+
+  @@id([playlist_id, song_id])
 }
