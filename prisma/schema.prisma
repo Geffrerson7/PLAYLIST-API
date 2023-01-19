@@ -4,49 +4,39 @@
 generator client {
   provider = "prisma-client-js"
 }
+
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String
-  password String 
-  last_session DateTime @default(now())
-  update_at DateTime @updatedAt
-  date_born DateTime
-  playlists Playlist[]
+  id           Int        @id @default(autoincrement())
+  email        String     @unique
+  name         String
+  password     String
+  last_session DateTime   @default(now())
+  update_at    DateTime   @updatedAt
+  date_born    DateTime
+  playlists    Playlist[]
 }
 
-model Playlist{
-  id         Int        @id @default(autoincrement())
-  name String
-  user    User    @relation(fields: [user_id], references: [id])
-  user_id  Int
-  songs PlaylistsOnSongs[] 
-    
+model Playlist {
+  id      Int    @id @default(autoincrement())
+  name    String
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id Int
+  songs   Song[]
 }
 
 model Song {
-  id        Int     @id @default(autoincrement())
-  name     String
-  artist   String
-  album String
-  year Int
-  genre String
-  duration Int
-  status String?
-  playlists   PlaylistsOnSongs[] 
-  
+  id        Int        @id @default(autoincrement())
+  name      String
+  artist    String
+  album     String
+  year      Int
+  genre     String
+  duration  Int
+  status    String?
+  playlists Playlist[]
 }
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
-}
-
-model PlaylistsOnSongs {
-  playlist       Playlist     @relation(fields: [playlist_id], references: [id])
-  playlist_id     Int // relation scalar field (used in the `@relation` attribute above)
-  song   Song @relation(fields: [song_id], references: [id])
-  song_id Int // relation scalar field (used in the `@relation` attribute above)
-  
-
-  @@id([playlist_id, song_id])
 }
