@@ -13,6 +13,8 @@ model User {
   update_at DateTime @updatedAt
   date_born DateTime
   playlists Playlist[]
+
+  @@map("users")
 }
 
 model Playlist{
