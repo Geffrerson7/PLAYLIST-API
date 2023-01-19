@@ -6,6 +6,7 @@ const app: Application = express();
 app.use(express.json());
 
 app.use("/api/v1/playlist", ROUTER.playlistRouter);
+app.use("/api/v1/users", ROUTER.userRouter);
 //app.use("/api/v1/posts", ROUTER.postRouter);
 
 export default app;

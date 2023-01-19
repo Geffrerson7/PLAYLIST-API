@@ -6,14 +6,16 @@ generator client {
 }
 
 model User {
-  id           Int        @id @default(autoincrement())
-  email        String     @unique
-  name         String
-  password     String
-  last_session DateTime   @default(now())
-  update_at    DateTime   @updatedAt
-  date_born    DateTime
-  playlists    Playlist[]
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String
+  password String 
+  last_session DateTime @default(now())
+  update_at DateTime @updatedAt
+  date_born DateTime
+  playlists Playlist[]
+
+  @@map("users")
 }
 
 model Playlist {
