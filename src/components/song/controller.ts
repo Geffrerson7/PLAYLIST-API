@@ -1,6 +1,5 @@
-import type { NextFunction, Request, Response } from "express";
+import type { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 const prisma = new PrismaClient();
@@ -9,54 +8,63 @@ dotenv.config()
 
 export const store = async (req: Request, res: Response): Promise<void> => {
     try {
-    const data = req.body;
-  
-    await prisma.song.create({data});
-  
-      res.status(201).json({ ok: true, message: "Canción creada correctamente" });
-    } catch (error) {
-      res.status(500).json({ ok: false, message: error });
-    }
-  };
+        const data = req.body;
 
-export const findOneSong = async (req: Request,res: Response): Promise<void> =>{
-    try {
-        const idSong = Number(req.params.id);
-        const song = await prisma.song.findUnique({
-            where: {
-                id: idSong,
-              },
-        });
-        res.json(song);
+        await prisma.song.create({ data });
+
+        res.status(201).json({ ok: true, message: "Canción creada correctamente" });
     } catch (error) {
         res.status(500).json({ ok: false, message: error });
-      }
+    }
+};
+
+export const findOneSong = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const uid = (req as any).uid
+        let message: string = "Unauthorized"
+        let status: string = "public"
+        let song: any = {}
+
+        const idSong = Number(req.params.id);
+
+        song = await prisma.song.findMany({
+            where: {
+                id: idSong,
+                status
+            },
+        });
+
+        if (uid) {
+
+            message = "Authorized"
+            song = await prisma.song.findUnique({
+                where: {
+                    id: idSong
+
+                },
+            });
+
+        }
+
+        
+        res.json({ song, message });
+    } catch (error) {
+        res.status(500).json({ ok: false, message: error });
+    }
 }
-
-
 
 export const findSongs = async (req: Request, res: Response): Promise<void> => {
     try {
-        let message:string = ""
-        let whereClause:Record<string, string> = {status: "public"}
-        const { authorization } = req.headers;
-        if(!authorization){
-            message="Unauthorized"
-            
-        }else if (!authorization.startsWith("Bearer ")){
-            message= "Token format wrong"
-            
-        }else{
-            const token = authorization.replace("Bearer ", "");
-            const decoded = jwt.verify(token, String(process.env.JWT_SECRET));
-            if (decoded) {
-                whereClause = {}
-                message="Authorized"
-            }
+        const uid = (req as any).uid
+
+        let message: string = "Unauthorized"
+        let whereClause: Record<string, string> = { status: "public" }
+
+        if (uid) {
+            whereClause = {}
+            message = "Authorized"
         }
-            
-                       
-        
+
         const songs = await prisma.song.findMany({
             where: whereClause
         });
