@@ -13,7 +13,7 @@ export function requireToken(req:Request, res:Response, next:NextFunction){
             next()
         }else{
         token = token.split(' ')[1]
-        const uid=jwt.verify(token, String(process.env.JWT_SECRET));
+        const uid=jwt.verify(token, process.env.JWT_SECRET!);
         (req as any).uid = uid;
         
         next()

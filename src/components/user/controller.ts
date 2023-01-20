@@ -3,8 +3,9 @@ import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-
+dotenv.config()
 const prisma = new PrismaClient();
+
 
 export const findAll =async (_req:Request, res: Response): Promise<void> => {
 
@@ -65,7 +66,16 @@ export const login = async (req:Request, res: Response): Promise<void>=>{
             else
             {
                 const token = generateToken(user?.id);
-                res.json({token})
+                const loggedUser = await prisma.user.update({
+                    where: {
+                      email: user.email,
+                    },
+                    data: {
+                        last_session: new Date(),
+                    },
+                  })
+                res.json({token, login_Date:loggedUser.last_session})
+                
             }
             
         }

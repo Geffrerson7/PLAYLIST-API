@@ -2,9 +2,9 @@ import type { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import dotenv from 'dotenv';
 
-const prisma = new PrismaClient();
 
 dotenv.config()
+const prisma = new PrismaClient();
 
 export const store = async (req: Request, res: Response): Promise<void> => {
     try {
