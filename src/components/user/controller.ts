@@ -2,6 +2,7 @@ import type {Request, Response} from 'express'
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
+//import jwt from "jsonwebtoken";
 
 export const findAll =async (_req:Request, res: Response): Promise<void> => {
 
@@ -31,6 +32,7 @@ export const store =async (req:Request, res: Response): Promise<void> => {
                 date_born: new Date(date_born)
               }
         })
+        
         res.status(201).json({ok: true, message: "Usuario creado correctamente"})
     } catch (error) {
         console.log(error)
