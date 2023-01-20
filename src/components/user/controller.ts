@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 const prisma = new PrismaClient();
-import jwt from "jsonwebtoken";
 
 export const findAll =async (_req:Request, res: Response): Promise<void> => {
 
