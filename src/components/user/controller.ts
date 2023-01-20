@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 const prisma = new PrismaClient();
+import jwt from "jsonwebtoken";
 
 export const findAll =async (_req:Request, res: Response): Promise<void> => {
 
@@ -34,7 +35,8 @@ export const store =async (req:Request, res: Response): Promise<void> => {
                 date_born: new Date(date_born)
               }
         })
-        res.status(201).json({ok: true, message: "Usuario creado correctamente"})
+        
+        res.status(201).json({ok: true, message: "Usuario creado correctamente",user})
     } catch (error) {
  
         res.status(500).json({ok: false, message: error})
@@ -70,7 +72,6 @@ export const login = async (req:Request, res: Response): Promise<void>=>{
         }
            
     } catch (error) {
-    
         res.status(500).json({ error: "Error de servidor" });
     }
     
