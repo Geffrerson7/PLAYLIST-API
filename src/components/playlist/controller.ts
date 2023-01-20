@@ -56,7 +56,7 @@ export const addSongToPlaylist = async (req: Request, res: Response): Promise<vo
         songs: true,
       },
       data: {
-        songs: { connect: { id: data.id_song } }
+        songs: { connect: { } }
       }
     });
 
@@ -65,4 +65,3 @@ export const addSongToPlaylist = async (req: Request, res: Response): Promise<vo
     res.status(500).json({ ok: false, message: error });
   }
 };
-
