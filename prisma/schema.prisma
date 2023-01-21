@@ -27,14 +27,14 @@ model Playlist {
 }
 
 model Song {
-  id        Int        @id @default(autoincrement())
-  name      String
-  artist    String
-  album     String
-  year      Int
-  genre     String
-  duration  Int
-  status    String?
+  id         Int       @id @default(autoincrement())
+  name       String
+  artist     String    @unique
+  album      String
+  year       Int
+  genre      String
+  duration   Int
+  isPrivate  Boolean 
   playlists Playlist[]
 }
 
