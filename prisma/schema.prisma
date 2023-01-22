@@ -10,7 +10,7 @@ model User {
   email String  @unique
   name  String
   password String 
-  last_session DateTime @default(now())
+  last_session DateTime?
   update_at DateTime @updatedAt
   date_born DateTime
   playlists Playlist[]
