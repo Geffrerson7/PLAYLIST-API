@@ -21,8 +21,8 @@ export const store = async (req: Request, res: Response): Promise<void> => {
 export const findOneSong = async (req: Request, res: Response): Promise<void> => {
     try {
         const uid = (req as any).uid
-        let message: string = "Unauthorized"
-        let status: string = "public"
+        let message: string = "Unauthenticated user"
+        let isPrivate: boolean = false
         let song: any = {}
 
         const idSong = Number(req.params.id);
@@ -30,23 +30,21 @@ export const findOneSong = async (req: Request, res: Response): Promise<void> =>
         song = await prisma.song.findMany({
             where: {
                 id: idSong,
-                status
+                isPrivate
             },
         });
 
         if (uid) {
 
-            message = "Authorized"
+            message = "Authenticated user"
             song = await prisma.song.findUnique({
                 where: {
                     id: idSong
-
                 },
             });
 
         }
 
-        
         res.json({ song, message });
     } catch (error) {
         res.status(500).json({ ok: false, message: error });
@@ -57,12 +55,12 @@ export const findSongs = async (req: Request, res: Response): Promise<void> => {
     try {
         const uid = (req as any).uid
 
-        let message: string = "Unauthorized"
-        let whereClause: Record<string, string> = { status: "public" }
+        let message: string = "Unauthenticated user"
+        let whereClause: Record<string, boolean> = { isPrivate: false }
 
         if (uid) {
             whereClause = {}
-            message = "Authorized"
+            message = "Authenticated user"
         }
 
         const songs = await prisma.song.findMany({
