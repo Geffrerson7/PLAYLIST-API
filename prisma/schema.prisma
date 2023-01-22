@@ -29,7 +29,7 @@ model Playlist {
 model Song {
   id         Int       @id @default(autoincrement())
   name       String
-  artist     String    @unique
+  artist     String    
   album      String
   year       Int
   genre      String
