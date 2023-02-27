@@ -2,9 +2,9 @@ import type { Application, Router } from "express";
 import * as ROUTES from "../components";
 
 const routes: [string, Router][] = [
-  ["users", ROUTES.playlistRouter],
-  ["playlist", ROUTES.songRouter],
-  ["songs", ROUTES.userRouter],
+  ["users", ROUTES.userRouter],
+  ["playlist", ROUTES.playlistRouter],
+  ["songs", ROUTES.songRouter],
 ];
 
 const router = (app: Application): void => {
