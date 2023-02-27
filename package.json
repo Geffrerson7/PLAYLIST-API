@@ -4,13 +4,13 @@
   "description": "API REST CON EXPRESS, TYPESCRIPT Y PRISMA",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon",
-    "build": "tsc",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "build": "npx tsc",
     "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Geffrerson7/Proyecto-Unidad-7.git"
+    "url": "git+https://github.com/Geffrerson7/PLAYLIST-API.git"
   },
   "keywords": [
     "PRISMA",
@@ -20,8 +20,10 @@
   "author": "Raisa Orellana, Jaqueline Ramos y Gefferson Casasola",
   "license": "MIT",
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/express": "4.17.15",
     "@types/node": "18.11.18",
+    "concurrently": "^7.6.0",
     "nodemon": "2.0.20",
     "prisma": "4.9.0",
     "ts-node": "10.9.1",
@@ -34,12 +36,13 @@
     "@types/dotenv": "^8.2.0",
     "@types/jsonwebtoken": "^9.0.1",
     "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
     "dotenv": "16.0.3",
     "express": "4.18.2",
     "jsonwebtoken": "^9.0.0"
   },
   "bugs": {
-    "url": "https://github.com/Geffrerson7/Proyecto-Unidad-7/issues"
+    "url": "https://github.com/Geffrerson7/PLAYLIST-API/issues"
   },
-  "homepage": "https://github.com/Geffrerson7/Proyecto-Unidad-7#readme"
+  "homepage": "https://github.com/Geffrerson7/PLAYLIST-API#readme"
 }

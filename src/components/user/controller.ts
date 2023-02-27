@@ -1,11 +1,10 @@
 import type { Request, Response } from 'express'
-import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import prisma from "../../datasource";
 
 dotenv.config()
-const prisma = new PrismaClient();
 
 export const findAll = async (_req: Request, res: Response): Promise<void> => {
 

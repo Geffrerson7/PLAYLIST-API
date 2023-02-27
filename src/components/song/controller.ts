@@ -1,10 +1,8 @@
 import type { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../datasource";
 import dotenv from 'dotenv';
 
-
 dotenv.config()
-const prisma = new PrismaClient();
 
 export const store = async (req: Request, res: Response): Promise<void> => {
     try {
