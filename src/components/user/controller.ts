@@ -83,7 +83,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
                         last_session: new Date(),
                     },
                 })
-                res.json({ token, login_Date: loggedUser.last_session })
+                res.json({ loginToken:token, login_Date: loggedUser.last_session })
 
             }
 
