@@ -1,6 +1,6 @@
-# Proyecto-Unidad-7
+# PLAYLIST-API
 
-REST API with typescript, Express and Prisma.
+This app was built using TypeScript, Express, Prisma and PostgreSQL. You are able to create users, songs and playlists. Also authenticated users will have access to private songs. For authentication users we used JWT and for API documentation I used Postman.
 
 ## Environment Variables
 
@@ -17,13 +17,13 @@ To run this project, you will need to add the following environment variables to
 Clone the project
 
 ```bash
-  git clone https://github.com/Geffrerson7/Proyecto-Unidad-7.git
+  git clone https://github.com/Geffrerson7/PLAYLIST-API.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd Proyecto-Unidad-7
+  cd PLAYLIST-API
 ```
 
 Install dependencies
