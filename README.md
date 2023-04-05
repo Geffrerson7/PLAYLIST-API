@@ -2,6 +2,10 @@
 
 This app was built using TypeScript, Express, Prisma and PostgreSQL. You are able to create users, songs and playlists. Also authenticated users will have access to private songs. For authentication users we used JWT and for API documentation I used Postman.
 
+## ERD
+
+![ERD-PLAYLIST](https://user-images.githubusercontent.com/61089189/229990018-9356ef63-b3ca-451c-9afc-326415645a6f.png)
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
